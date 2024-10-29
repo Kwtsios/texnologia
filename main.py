@@ -102,7 +102,7 @@ st.text("")
 st.text("")
 col5, col6 = st.columns(2)
 with col5:
-    first_text = st.text_input('Εισάγετε κείμενο', 'Thats a sentence')
+    first_text = st.text_input('Εισάγετε κείμενο', 'This is a sentence')
 with col6:
     second_text = st.text_input('Εισάγετε γράμμα/λέξη για να δείτε αν υπάρχει στην πρόταση', 'e')
 
@@ -119,13 +119,11 @@ st.text("")
 
 # Διαδραστικό Widget 3 - Χρήση δεδομένων από serverless για υπολογισμό
 st.header("Αλληλεπίδραση με Υπηρεσία για Επίλυση Μαθηματικού Υπολογισμού")
-operation = st.selectbox("Επιλέξτε υπολογισμό", ["Πρόσθεση", "Αφαίρεση"])
-num1 = st.number_input("Αριθμός 1:")
-num2 = st.number_input("Αριθμός 2:")
-if st.button("Υπολογισμός"):
-    if operation == "Πρόσθεση":
-        result = num1 + num2
-        st.write(f"Αποτέλεσμα Πρόσθεσης: {result}")
-    elif operation == "Αφαίρεση":
-        result = num1 - num2
-        st.write(f"Αποτέλεσμα Αφαίρεσης: {result}")
+st.text("")
+st.text("")
+third_text = st.text_input('Εισάγετε κείμενο', 'This is a sentence')
+st.write('Αποτέλεσμα ')
+send_third = 'https://6oswps446zy2qud64ngemd34bi0cgppp.lambda-url.ap-northeast-1.on.aws/?st=%s' % (third_text)
+response_third = requests.get(send_third)
+st.write(response_third.text)
+st.text("")
