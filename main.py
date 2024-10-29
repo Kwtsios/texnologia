@@ -45,7 +45,22 @@ else:
 
 # Στατικό Widget 3 - Πληροφορίες Νέων
 st.header("Ειδήσεις της Ημέρας")
-st.write("Ανάκτηση ειδήσεων από ένα δημόσιο API...")
+
+# Fetch news data using News API
+news_api_key = "YOUR_NEWS_API_KEY"  # Replace with your News API key
+news_url = f"https://newsapi.org/v2/top-headlines?country=us&apiKey={news_api_key}"
+
+news_response = requests.get(news_url)
+
+if news_response.status_code == 200:
+    news_data = news_response.json()
+    articles = news_data.get("articles", [])
+    for article in articles[:5]:  # Display the top 5 news articles
+        st.subheader(article["title"])
+        st.write(article["description"])
+        st.write(f"[Read more]({article['url']})")
+else:
+    st.error("Δεν ήταν δυνατή η ανάκτηση των ειδήσεων.")
 
 # Διαδραστικό Widget 1 - Πληροφορίες Καιρού για Επιλεγμένη Τοποθεσία
 st.header("Επιλογή Τοποθεσίας για Πληροφορίες Καιρού")
@@ -74,5 +89,9 @@ operation = st.selectbox("Επιλέξτε υπολογισμό", ["Πρόσθε
 num1 = st.number_input("Αριθμός 1:")
 num2 = st.number_input("Αριθμός 2:")
 if st.button("Υπολογισμός"):
-    # Κλήση serverless function για μαθηματικό υπολογισμό
-    st.write(f"Αποτέλεσμα: ...")
+    if operation == "Πρόσθεση":
+        result = num1 + num2
+        st.write(f"Αποτέλεσμα Πρόσθεσης: {result}")
+    elif operation == "Αφαίρεση":
+        result = num1 - num2
+        st.write(f"Αποτέλεσμα Αφαίρεσης: {result}")
