@@ -55,4 +55,3 @@ num2 = st.number_input("Αριθμός 2:")
 if st.button("Υπολογισμός"):
     # Κλήση serverless function για μαθηματικό υπολογισμό
     st.write(f"Αποτέλεσμα: ...")
-weather.visualcrossing.com
