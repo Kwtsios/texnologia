@@ -6,7 +6,8 @@ st.subheader("Web-enabled Εφαρμογή με Widgets")
 
 # Στατικό Widget 1 - Πληροφορίες Καιρού (προκαθορισμένη τοποθεσία)
 st.header("Πληροφορίες Καιρού για Λευκωσία")
-response = requests.get("https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=Nicosia")
+response = requests.get("https://api.weatherapi.com/v1/current.json?key=https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Cyprus?unitGroup=metric&key=H7U5R9FXYMF7ZPUHR4PU4RH8P&contentType=json
+&q=Nicosia")
 weather_data = response.json()
 st.write(f"Θερμοκρασία: {weather_data['current']['temp_c']}°C")
 st.write(f"Συνθήκες: {weather_data['current']['condition']['text']}")
