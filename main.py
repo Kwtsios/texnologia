@@ -22,7 +22,7 @@ st.header("Γενικές Πληροφορίες Χρηματοοικονομι�
 
 # Fetch stock market data using Alpha Vantage API
 symbol = "AAPL"  # Example stock symbol (Apple Inc.)
-api_key = "YOUR_ALPHA_VANTAGE_API_KEY"  # Replace with your Alpha Vantage API key
+api_key = "HHDQCSHRJ7VJPCDP"  # Replace with your Alpha Vantage API key
 stock_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=5min&apikey={api_key}"
 
 stock_response = requests.get(stock_url)
