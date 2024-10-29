@@ -4,6 +4,7 @@ import json
 import pandas as pd
 import numpy as np
 from PIL import Image
+pip install nest_asyncio
 import nest_asyncio
 nest_asyncio.apply()
 
