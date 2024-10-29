@@ -94,7 +94,6 @@ send = 'https://vhkmdl2db7wsc3cggv3ozoj4ne0owrdk.lambda-url.ap-northeast-1.on.aw
 response = requests.get(send)
 st.write(response.text)
 st.text("")
-st.write('Code implementation below from aws lambda')
 
 
 
