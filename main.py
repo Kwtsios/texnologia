@@ -47,7 +47,7 @@ else:
 st.header("Ειδήσεις της Ημέρας")
 
 # Fetch news data using News API
-news_api_key = "https://newsdata.io/api/1/news?apikey=pub_57682a54a74560d059e6c6dd8ad4a4ababb12&q=cyprus&country=cy "  # Replace with your News API key
+news_api_key = "https://gateway.apyflux.com/v1/search?query=Elon+Musk&limit=500&time_published=anytime&source=&country=US&lang=en"  # Replace with your News API key
 news_url = f"https://newsapi.org/v2/top-headlines?country=us&apiKey={news_api_key}"
 
 news_response = requests.get(news_url)
