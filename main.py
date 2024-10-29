@@ -95,45 +95,6 @@ response = requests.get(send)
 st.write(response.text)
 st.text("")
 st.write('Code implementation below from aws lambda')
-code = '''import json
-
-def lambda_handler(event, context):
-    return_text = ""
-    if "queryStringParameters" not in event:
-        return_text = "No query string present"
-    else:
-        query = event["queryStringParameters"]
-        if "num1" not in query:
-            return_text = "No num1 chosen"
-        elif "num2" not in query:
-            return_text = "No num2 chosen"
-        elif "op" not in query:
-            return_text = "No op chosen"
-        else:
-            num1 = float(query["num1"])
-            num2 = float(query["num2"])
-            op = query['op']
-            
-            if (op == 'add'):
-                x=float("{0:.2f}".format(num1 + num2))
-                return_text = f"Your numbers add to: {x}"
-            elif (op == '-'):
-                x=float("{0:.2f}".format(num1 - num2))
-                return_text = f"Your numbers substract to: {x}"
-            elif (op == '/'):
-                x=float("{0:.2f}".format(num1 / num2))
-                return_text = f"Your numbers divide to: {x}"
-            elif (op == '*'):
-                x=float("{0:.2f}".format(num1*num2))
-                return_text = f"Your numbers multiply to: {x}"
-            else:
-                return_text = "No op chosen"
-    return {
-        'statusCode': 200,
-        'body': f'{return_text}',
-        'headers': { 'Content-Type': "text/html" }
-    }'''
-st.code(code, language='python')
 
 
 
