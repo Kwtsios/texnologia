@@ -97,12 +97,12 @@ st.text("")
 st.text("")
 col5, col6 = st.columns(2)
 with col5:
-    first_text = st.text_input('Enter first text', 'This is a sentence')
+    first_text = st.text_input('Εισάγετε το πρώτο κείμενο', 'Αυτή είναι μια πρόταση')
 with col6:
-    second_text = st.text_input('Enter a condition to see if exists in the sentence', 'e')
+    second_text = st.text_input('Εισάγετε μια συνθήκη για να δείτε αν υπάρχει στην πρόταση', 'ε')
 
-st.write('Result from the second serverless function ')
-send_second = 'https://e7mdkoecvxzbqhjjymxdw3red40tmbun.lambda-url.ap-northeast-1.on.aws/?astring=%s&con=%s' % (first_text,second_text)
+st.write('Αποτέλεσμα από τη δεύτερη serverless function')
+send_second = 'https://e7mdkoecvxzbqhjjymxdw3red40tmbun.lambda-url.ap-northeast-1.on.aws/?astring=%s&con=%s' % (first_text, second_text)
 response_second = requests.get(send_second)
 st.write(response_second.text)
 st.text("")
