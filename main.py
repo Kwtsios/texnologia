@@ -74,7 +74,7 @@ import streamlit as st
 import requests
 
 # Τίτλος εφαρμογής
-st.title("Serverless function για Πρόσθεση")
+st.title("Υπολογιστική μηχανή για Πρόσθεση")
 
 # Εισαγωγή αριθμών
 col1, col2 = st.columns(2)
