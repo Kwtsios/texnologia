@@ -99,22 +99,24 @@ if st.button("Υπολογισμός"):
 
 import streamlit as st
 from datetime import datetime
+import pytz
 
 # Τίτλος σελίδας
-st.title("Πληροφορίες για Σημερινή Ημερομηνία και Ώρα")
+st.title("Πληροφορίες για Σημερινή Ημερομηνία και Ώρα στην Κύπρο")
 
-# Λήψη της τρέχουσας ημερομηνίας και ώρας
-current_datetime = datetime.now()
+# Ορισμός ζώνης ώρας για την Κύπρο
+cyprus_timezone = pytz.timezone("Europe/Nicosia")
+current_datetime_cyprus = datetime.now(cyprus_timezone)
 
 # Εμφάνιση στατικών πληροφοριών
-st.write("Σημερινή ημερομηνία:", current_datetime.strftime("%d/%m/%Y"))
-st.write("Τρέχουσα ώρα:", current_datetime.strftime("%H:%M:%S"))
-st.write("Ημέρα της εβδομάδας:", current_datetime.strftime("%A"))
+st.write("Σημερινή ημερομηνία:", current_datetime_cyprus.strftime("%d/%m/%Y"))
+st.write("Τρέχουσα ώρα (Κύπρος):", current_datetime_cyprus.strftime("%H:%M:%S"))
+st.write("Ημέρα της εβδομάδας:", current_datetime_cyprus.strftime("%A"))
 
 # Επιπλέον πληροφορίες
-st.write("Χρονιά:", current_datetime.year)
-st.write("Μήνας:", current_datetime.month)
-st.write("Ημέρα:", current_datetime.day)
-st.write("Ώρα:", current_datetime.hour)
-st.write("Λεπτά:", current_datetime.minute)
-st.write("Δευτερόλεπτα:", current_datetime.second)
+st.write("Χρονιά:", current_datetime_cyprus.year)
+st.write("Μήνας:", current_datetime_cyprus.month)
+st.write("Ημέρα:", current_datetime_cyprus.day)
+st.write("Ώρα:", current_datetime_cyprus.hour)
+st.write("Λεπτά:", current_datetime_cyprus.minute)
+st.write("Δευτερόλεπτα:", current_datetime_cyprus.second)
