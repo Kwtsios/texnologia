@@ -103,7 +103,7 @@ st.text("")
 col5, col6 = st.columns(2)
 with col5:
     first_text = st.text_input('Εισάγετε κείμενο', 'Thats a sentence')
-     st.text("")
+    st.text("")  # This adds an empty line below the text input
 with col6:
     second_text = st.text_input('Εισάγετε γράμμα/λέξη για να δείτε αν υπάρχει στην πρόταση', 'e')
 
