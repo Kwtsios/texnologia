@@ -103,7 +103,7 @@ with col5:
 with col6:
     second_text = st.text_input('Εισάγετε μια συνθήκη για να δείτε αν υπάρχει στην πρόταση', 'ε')
 
-st.write('Αποτέλεσμα από τη δεύτερη serverless function')
+st.write('Αποτέλεσμα')
 send_second = 'https://e7mdkoecvxzbqhjjymxdw3red40tmbun.lambda-url.ap-northeast-1.on.aws/?astring=%s&con=%s' % (first_text, second_text)
 response_second = requests.get(send_second)
 st.write(response_second.text)
