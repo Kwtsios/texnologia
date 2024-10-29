@@ -20,28 +20,21 @@ else:
 # Στατικό Widget 2 - Γενικές Πληροφορίες Χρηματοοικονομικής Αγοράς
 st.header("Γενικές Πληροφορίες Χρηματοοικονομικής Αγοράς")
 
-# Fetch stock market data using Alpha Vantage API
-symbol = "AAPL"  # Example stock symbol (Apple Inc.)
-api_key = "16VOT2UEUPIROENX"  # Replace with your Alpha Vantage API key
-stock_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=5min&apikey={api_key}"
+import http.client
 
-stock_response = requests.get(stock_url)
+conn = http.client.HTTPSConnection("real-time-finance-data.p.rapidapi.com")
 
-if stock_response.status_code == 200:
-    stock_data = stock_response.json()
-    try:
-        # Extract the most recent data point
-        latest_time = list(stock_data['Time Series (5min)'].keys())[0]
-        latest_data = stock_data['Time Series (5min)'][latest_time]
-        st.write(f"Σύμβολο: {symbol}")
-        st.write(f"Τιμή: ${latest_data['1. open']} (Άνοιγμα)")
-        st.write(f"Υψηλό: ${latest_data['2. high']}")
-        st.write(f"Χαμηλό: ${latest_data['3. low']}")
-        st.write(f"Όγκος: {latest_data['5. volume']}")
-    except KeyError:
-        st.error("Σφάλμα κατά την ανάκτηση των δεδομένων χρηματιστηρίου.")
-else:
-    st.error("Δεν ήταν δυνατή η σύνδεση με το API του Alpha Vantage για χρηματιστηριακά δεδομένα.")
+headers = {
+    'x-rapidapi-key': "3c6eefd087mshe93f15fa0ced7ecp14448djsnd6db5503a79a",
+    'x-rapidapi-host': "real-time-finance-data.p.rapidapi.com"
+}
+
+conn.request("GET", "/market-trends?trend_type=MARKET_INDEXES&country=us&language=en", headers=headers)
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
 
 # Στατικό Widget 3 - Πληροφορίες Νέων
 st.header("Ειδήσεις της Ημέρας")
