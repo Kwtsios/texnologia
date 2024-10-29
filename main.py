@@ -4,9 +4,6 @@ import json
 import pandas as pd
 import numpy as np
 from PIL import Image
-install nest_asyncio
-import nest_asyncio
-nest_asyncio.apply()
 
 # Set the page to a wide layout
 st.set_page_config(layout="wide")
