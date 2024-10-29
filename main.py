@@ -36,6 +36,22 @@ data = res.read()
 
 print(data.decode("utf-8"))
 
+if stock_response.status_code == 200:
+    stock_data = stock_response.json()
+    try:
+        # Extract the most recent data point
+        latest_time = list(stock_data['Time Series (5min)'].keys())[0]
+        latest_data = stock_data['Time Series (5min)'][latest_time]
+        st.write(f"Σύμβολο: {symbol}")
+        st.write(f"Τιμή: ${latest_data['1. open']} (Άνοιγμα)")
+        st.write(f"Υψηλό: ${latest_data['2. high']}")
+        st.write(f"Χαμηλό: ${latest_data['3. low']}")
+        st.write(f"Όγκος: {latest_data['5. volume']}")
+    except KeyError:
+        st.error("Σφάλμα κατά την ανάκτηση των δεδομένων χρηματιστηρίου.")
+else:
+    st.error("Δεν ήταν δυνατή η σύνδεση με το API του Alpha Vantage για χρηματιστηριακά δεδομένα.")
+
 # Στατικό Widget 3 - Πληροφορίες Νέων
 st.header("Ειδήσεις της Ημέρας")
 
