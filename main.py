@@ -70,21 +70,30 @@ st.write("Δευτερόλεπτα:", current_datetime_cyprus.second)
 
 
 # Διαδραστικό Widget 1 - Υπολογιστική
-st.header("Απλή Υπολογιστική") 
-col3, col4, col5 = st.columns(3)
+st.title("Serverless functions") # Displays title
+col3, col4,col5 = st.columns(3)
 with col3:
-    number1 = st.number_input('Εισάγετε τον πρώτο αριθμό')
-with col4:
-    number2 = st.number_input('Εισάγετε τον δεύτερο αριθμό')
-with col5:
-    operator = st.selectbox('Επιλέξτε πράξη:', ('+', '-', '/', '*'))
-    if operator == '+':
-        operator = 'add'
+    number1 = st.number_input('Insert first number')
+ #   st.write('The current number is ', number1)
 
-st.write('Αποτέλεσμα από την πρώτη serverless function')
-send = f'https://vhkmdl2db7wsc3cggv3ozoj4ne0owrdk.lambda-url.ap-northeast-1.on.aws/?num1={number1}&num2={number2}&op={operator}'
+with col4:
+    number2 = st.number_input('Insert second number')
+  #  st.write('The current number is ', number2)
+
+with col5:
+    operator = st.selectbox('Choose an operator:',
+                                ('+', '-', '/', '*'))
+  #  st.write("You chose ",operator)
+    if(operator=='+'):
+        operator='add'
+
+
+st.write('Result from the first serverless function ')
+send = 'https://vhkmdl2db7wsc3cggv3ozoj4ne0owrdk.lambda-url.ap-northeast-1.on.aws/?num1=%f&num2=%f&op=%s' % (number1,number2,operator)
+#st.write(send)
 response = requests.get(send)
 st.write(response.text)
+st.text("")
 
 
 
