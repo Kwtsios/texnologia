@@ -97,7 +97,7 @@ import streamlit as st
 import requests
 
 # Τίτλος εφαρμογής
-st.title("Μέτρηση γραμμάτων")
+st.title("Μέτρηση γραμμάτων/λέξεων")
 st.text("")
 st.text("")
 col5, col6 = st.columns(2)
