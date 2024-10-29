@@ -20,21 +20,12 @@ else:
 # Στατικό Widget 2 - Γενικές Πληροφορίες Χρηματοοικονομικής Αγοράς
 st.header("Γενικές Πληροφορίες Χρηματοοικονομικής Αγοράς")
 
-import http.client
+# Fetch stock market data using Alpha Vantage API
+symbol = "AAPL"  # Example stock symbol (Apple Inc.)
+api_key = "HHDQCSHRJ7VJPCDP"  # Replace with your Alpha Vantage API key
+stock_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=5min&apikey={api_key}"
 
-conn = http.client.HTTPSConnection("real-time-finance-data.p.rapidapi.com")
-
-headers = {
-    'x-rapidapi-key': "3c6eefd087mshe93f15fa0ced7ecp14448djsnd6db5503a79a",
-    'x-rapidapi-host': "real-time-finance-data.p.rapidapi.com"
-}
-
-conn.request("GET", "/market-trends?trend_type=MARKET_INDEXES&country=us&language=en", headers=headers)
-
-res = conn.getresponse()
-data = res.read()
-
-print(data.decode("utf-8"))
+stock_response = requests.get(stock_url)
 
 if stock_response.status_code == 200:
     stock_data = stock_response.json()
