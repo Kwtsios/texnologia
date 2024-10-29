@@ -44,28 +44,21 @@ else:
     st.error("Δεν ήταν δυνατή η σύνδεση με το API του Alpha Vantage για χρηματιστηριακά δεδομένα.")
 
 
-from datetime import datetime
-import pytz
-
-# Τίτλος σελίδας
-st.title("Πληροφορίες για Σημερινή Ημερομηνία και Ώρα στην Κύπρο")
-
-# Ορισμός ζώνης ώρας για την Κύπρο
-cyprus_timezone = pytz.timezone("Europe/Nicosia")
-current_datetime_cyprus = datetime.now(cyprus_timezone)
-
-# Εμφάνιση στατικών πληροφοριών
-st.write("Σημερινή ημερομηνία:", current_datetime_cyprus.strftime("%d/%m/%Y"))
-st.write("Τρέχουσα ώρα (Κύπρος):", current_datetime_cyprus.strftime("%H:%M:%S"))
-st.write("Ημέρα της εβδομάδας:", current_datetime_cyprus.strftime("%A"))
-
-# Επιπλέον πληροφορίες
-st.write("Χρονιά:", current_datetime_cyprus.year)
-st.write("Μήνας:", current_datetime_cyprus.month)
-st.write("Ημέρα:", current_datetime_cyprus.day)
-st.write("Ώρα:", current_datetime_cyprus.hour)
-st.write("Λεπτά:", current_datetime_cyprus.minute)
-st.write("Δευτερόλεπτα:", current_datetime_cyprus.second)
+# Στατικό Widget 3 - Πληροφορίες Νέων
+st.header("Ειδήσεις της Ημέρας")
+# Fetch news data using News API
+news_api_key = "aff1d5721a8148adbcee1cae0f237d13"  # Replace with your News API key
+news_url = f"https://newsapi.org/v2/top-headlines?country=us&apiKey={news_api_key}"
+news_response = requests.get(news_url)
+if news_response.status_code == 200:
+    news_data = news_response.json()
+    articles = news_data.get("articles", [])
+    for article in articles[:5]:  # Display the top 5 news articles
+        st.subheader(article["title"])
+        st.write(article["description"])
+        st.write(f"[Read more]({article['url']})")
+else:
+    st.error("Δεν ήταν δυνατή η ανάκτηση των ειδήσεων.")
 
 
 
