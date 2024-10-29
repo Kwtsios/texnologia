@@ -93,13 +93,25 @@ st.write(response.text)
 
 
 # Διαδραστικό Widget 2 - Currency Conversion (Παράδειγμα)
-st.header("Μετατροπή Νομισμάτων")
-amount = st.number_input("Ποσό:")
-from_currency = st.selectbox("Από νόμισμα", ["USD", "EUR", "GBP"])
-to_currency = st.selectbox("Σε νόμισμα", ["USD", "EUR", "GBP"])
-if st.button("Μετατροπή"):
-    # Κλήση serverless function για μετατροπή
-    st.write(f"Αποτέλεσμα: ...")
+st.text("")
+st.text("")
+col5, col6 = st.columns(2)
+with col5:
+    first_text = st.text_input('Enter first text', 'This is a sentence')
+with col6:
+    second_text = st.text_input('Enter a condition to see if exists in the sentence', 'e')
+
+st.write('Result from the second serverless function ')
+send_second = 'https://e7mdkoecvxzbqhjjymxdw3red40tmbun.lambda-url.ap-northeast-1.on.aws/?astring=%s&con=%s' % (first_text,second_text)
+response_second = requests.get(send_second)
+st.write(response_second.text)
+st.text("")
+
+
+
+
+
+
 
 # Διαδραστικό Widget 3 - Χρήση δεδομένων από serverless για υπολογισμό
 st.header("Αλληλεπίδραση με Υπηρεσία για Επίλυση Μαθηματικού Υπολογισμού")
