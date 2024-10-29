@@ -68,7 +68,34 @@ st.write("Λεπτά:", current_datetime_cyprus.minute)
 st.write("Δευτερόλεπτα:", current_datetime_cyprus.second)
 
 
-import json
+
+
+st.title("Serverless functions") # Displays title
+col3, col4,col5 = st.columns(3)
+with col3:
+    number1 = st.number_input('Insert first number')
+ #   st.write('The current number is ', number1)
+
+with col4:
+    number2 = st.number_input('Insert second number')
+  #  st.write('The current number is ', number2)
+
+with col5:
+    operator = st.selectbox('Choose an operator:',
+                                ('+', '-', '/', '*'))
+  #  st.write("You chose ",operator)
+    if(operator=='+'):
+        operator='add'
+
+
+st.write('Result from the first serverless function ')
+send = 'https://vhkmdl2db7wsc3cggv3ozoj4ne0owrdk.lambda-url.ap-northeast-1.on.aws/?num1=%f&num2=%f&op=%s' % (number1,number2,operator)
+#st.write(send)
+response = requests.get(send)
+st.write(response.text)
+st.text("")
+st.write('Code implementation below from aws lambda')
+code = '''import json
 
 def lambda_handler(event, context):
     return_text = ""
@@ -86,7 +113,7 @@ def lambda_handler(event, context):
             num1 = float(query["num1"])
             num2 = float(query["num2"])
             op = query['op']
-
+            
             if (op == 'add'):
                 x=float("{0:.2f}".format(num1 + num2))
                 return_text = f"Your numbers add to: {x}"
@@ -105,8 +132,8 @@ def lambda_handler(event, context):
         'statusCode': 200,
         'body': f'{return_text}',
         'headers': { 'Content-Type': "text/html" }
-    }
-
+    }'''
+st.code(code, language='python')
 
 
 
