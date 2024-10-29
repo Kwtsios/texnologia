@@ -69,7 +69,7 @@ st.write("Δευτερόλεπτα:", current_datetime_cyprus.second)
 
 
 
-
+# Διαδραστικό Widget 1 - Υπολογιστική
 st.title("Serverless functions") # Displays title
 col3, col4,col5 = st.columns(3)
 with col3:
@@ -96,18 +96,6 @@ st.write(response.text)
 st.text("")
 
 
-
-# Διαδραστικό Widget 1 - Πληροφορίες Καιρού για Επιλεγμένη Τοποθεσία
-st.header("Επιλογή Τοποθεσίας για Πληροφορίες Καιρού")
-location = st.text_input("Εισάγετε τοποθεσία:")
-if location:
-    response = requests.get(f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{location}?unitGroup=metric&key=H7U5R9FXYMF7ZPUHR4PU4RH8P&contentType=json")
-    if response.status_code == 200:
-        weather_data = response.json()
-        st.write(f"Θερμοκρασία: {weather_data['days'][0]['temp']}°C")
-        st.write(f"Συνθήκες: {weather_data['days'][0]['conditions']}")
-    else:
-        st.error("Δεν ήταν δυνατή η ανάκτηση των δεδομένων καιρού για την τοποθεσία.")
 
 # Διαδραστικό Widget 2 - Currency Conversion (Παράδειγμα)
 st.header("Μετατροπή Νομισμάτων")
