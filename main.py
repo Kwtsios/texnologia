@@ -102,9 +102,9 @@ st.text("")
 st.text("")
 col5, col6 = st.columns(2)
 with col5:
-    first_text = st.text_input('Εισάγετε κείμενο', 'Αυτή είναι μια πρόταση')
+    first_text = st.text_input('Εισάγετε κείμενο', 'Thats a sentence')
 with col6:
-    second_text = st.text_input('Εισάγετε γράμμα/λέξη για να δείτε αν υπάρχει στην πρόταση', 'ε')
+    second_text = st.text_input('Εισάγετε γράμμα/λέξη για να δείτε αν υπάρχει στην πρόταση', 'e')
 
 st.write('Αποτέλεσμα')
 send_second = 'https://e7mdkoecvxzbqhjjymxdw3red40tmbun.lambda-url.ap-northeast-1.on.aws/?astring=%s&con=%s' % (first_text, second_text)
