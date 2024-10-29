@@ -17,25 +17,40 @@ else:
     st.error("Δεν ήταν δυνατή η ανάκτηση των δεδομένων καιρού.")
 
 # Στατικό Widget 2 - Γενικές Πληροφορίες Χρηματοοικονομικής Αγοράς
+import streamlit as st
+import requests
+
+# Τίτλος ενότητας
 st.header("Γενικές Πληροφορίες Χρηματοοικονομικής Αγοράς")
-symbol = "AAPL"
-api_key = "16VOT2UEUPIROENX"
-stock_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=5min&apikey={api_key}"
+
+# Επιλογή σύμβολου μετοχής
+symbol = "AAPL"  # Παράδειγμα σύμβολο (Apple Inc.)
+api_key = "DlrQGWnayMYAfcWVy0o74AGyYTPtQxPl"  # Αντικαταστήστε με το δικό σας API key
+stock_url = f"https://financialmodelingprep.com/api/v3/quote/{symbol}?apikey={api_key}"
+
+# Ανάκτηση δεδομένων για το επιλεγμένο σύμβολο
 stock_response = requests.get(stock_url)
+
+# Έλεγχος αν η απόκριση ήταν επιτυχής
 if stock_response.status_code == 200:
     stock_data = stock_response.json()
-    try:
-        latest_time = list(stock_data['Time Series (5min)'].keys())[0]
-        latest_data = stock_data['Time Series (5min)'][latest_time]
-        st.write(f"Σύμβολο: {symbol}")
-        st.write(f"Τιμή: ${latest_data['1. open']} (Άνοιγμα)")
-        st.write(f"Υψηλό: ${latest_data['2. high']}")
-        st.write(f"Χαμηλό: ${latest_data['3. low']}")
-        st.write(f"Όγκος: {latest_data['5. volume']}")
-    except KeyError:
-        st.error("Σφάλμα κατά την ανάκτηση των δεδομένων χρηματιστηρίου.")
+    
+    # Ελέγχει αν υπάρχουν δεδομένα
+    if stock_data:
+        latest_data = stock_data[0]  # Λήψη των δεδομένων του πρώτου αντικειμένου
+
+        # Εμφάνιση πληροφοριών
+        st.write(f"Σύμβολο: {latest_data['symbol']}")
+        st.write(f"Τιμή: ${latest_data['price']:.2f}")
+        st.write(f"Υψηλό ημέρας: ${latest_data['dayHigh']:.2f}")
+        st.write(f"Χαμηλό ημέρας: ${latest_data['dayLow']:.2f}")
+        st.write(f"Τιμή κλεισίματος: ${latest_data['previousClose']:.2f}")
+        st.write(f"Όγκος: {latest_data['volume']}")
+    else:
+        st.error("Δεν βρέθηκαν δεδομένα για το σύμβολο που επιλέξατε.")
 else:
-    st.error("Δεν ήταν δυνατή η σύνδεση με το API του Alpha Vantage για χρηματιστηριακά δεδομένα.")
+    st.error("Δεν ήταν δυνατή η σύνδεση με το API του Financial Modeling Prep για δεδομένα χρηματιστηρίου.")
+    
 
 # Στατικό Widget - Πληροφορίες για Σημερινή Ημερομηνία και Ώρα στην Κύπρο
 st.header("Πληροφορίες για Σημερινή Ημερομηνία και Ώρα στην Κύπρο")
