@@ -95,3 +95,26 @@ if st.button("Υπολογισμός"):
     elif operation == "Αφαίρεση":
         result = num1 - num2
         st.write(f"Αποτέλεσμα Αφαίρεσης: {result}")
+
+
+import streamlit as st
+from datetime import datetime
+
+# Τίτλος σελίδας
+st.title("Πληροφορίες για Σημερινή Ημερομηνία και Ώρα")
+
+# Λήψη της τρέχουσας ημερομηνίας και ώρας
+current_datetime = datetime.now()
+
+# Εμφάνιση στατικών πληροφοριών
+st.write("Σημερινή ημερομηνία:", current_datetime.strftime("%d/%m/%Y"))
+st.write("Τρέχουσα ώρα:", current_datetime.strftime("%H:%M:%S"))
+st.write("Ημέρα της εβδομάδας:", current_datetime.strftime("%A"))
+
+# Επιπλέον πληροφορίες
+st.write("Χρονιά:", current_datetime.year)
+st.write("Μήνας:", current_datetime.month)
+st.write("Ημέρα:", current_datetime.day)
+st.write("Ώρα:", current_datetime.hour)
+st.write("Λεπτά:", current_datetime.minute)
+st.write("Δευτερόλεπτα:", current_datetime.second)
