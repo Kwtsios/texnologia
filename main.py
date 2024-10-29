@@ -74,30 +74,18 @@ import streamlit as st
 import requests
 
 # Τίτλος εφαρμογής
-st.title("Serverless functions")
+st.title("Serverless function για Πρόσθεση")
 
-# Εισαγωγή αριθμών και επιλογή πράξης
-col3, col4, col5 = st.columns(3)
-with col3:
+# Εισαγωγή αριθμών
+col1, col2 = st.columns(2)
+with col1:
     number1 = st.number_input('Εισάγετε τον πρώτο αριθμό')
-with col4:
+with col2:
     number2 = st.number_input('Εισάγετε τον δεύτερο αριθμό')
-with col5:
-    operator = st.selectbox('Επιλέξτε πράξη:', ('+', '-', '/', '*'))
 
-# Διαμόρφωση του operator για την serverless function
-if operator == '+':
-    operator_param = 'add'
-elif operator == '-':
-    operator_param = 'subtract'
-elif operator == '/':
-    operator_param = 'divide'
-elif operator == '*':
-    operator_param = 'multiply'
-
-# Εμφάνιση αποτελέσματος
-st.write('Αποτέλεσμα από την πρώτη serverless function')
-send = f'https://vhkmdl2db7wsc3cggv3ozoj4ne0owrdk.lambda-url.ap-northeast-1.on.aws/?num1={number1}&num2={number2}&op={operator_param}'
+# Εμφάνιση αποτελέσματος της πρόσθεσης μέσω της serverless function
+st.write('Αποτέλεσμα από την serverless function (Πρόσθεση)')
+send = f'https://vhkmdl2db7wsc3cggv3ozoj4ne0owrdk.lambda-url.ap-northeast-1.on.aws/?num1={number1}&num2={number2}&op=add'
 response = requests.get(send)
 st.write(response.text)
 
