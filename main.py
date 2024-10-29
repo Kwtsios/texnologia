@@ -93,6 +93,8 @@ st.write(response.text)
 
 
 # Διαδραστικό Widget 2 - Currency Conversion (Παράδειγμα)
+# Τίτλος εφαρμογής
+st.title("Μέτρηση γραμμάτων")
 st.text("")
 st.text("")
 col5, col6 = st.columns(2)
