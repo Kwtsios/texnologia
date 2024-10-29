@@ -102,7 +102,7 @@ st.text("")
 st.text("")
 col5, col6 = st.columns(2)
 with col5:
-    first_text = st.text_input('Εισάγετε κείμενο                                                                ', 'Thats a sentence')
+    first_text = st.text_input('Εισάγετε κείμενο                                                                .', 'Thats a sentence')
 with col6:
     second_text = st.text_input('Εισάγετε γράμμα/λέξη για να δείτε αν υπάρχει στην πρόταση', 'e')
 
