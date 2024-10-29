@@ -6,11 +6,17 @@ st.subheader("Web-enabled Εφαρμογή με Widgets")
 
 # Στατικό Widget 1 - Πληροφορίες Καιρού (προκαθορισμένη τοποθεσία)
 st.header("Πληροφορίες Καιρού για Λευκωσία")
-response = requests.get("https://api.weatherapi.com/v1/current.json?key=https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Cyprus?unitGroup=metric&key=H7U5R9FXYMF7ZPUHR4PU4RH8P&contentType=json
-&q=Nicosia")
-weather_data = response.json()
-st.write(f"Θερμοκρασία: {weather_data['current']['temp_c']}°C")
-st.write(f"Συνθήκες: {weather_data['current']['condition']['text']}")
+
+# Correct Visual Crossing URL
+response = requests.get("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Cyprus?unitGroup=metric&key=H7U5R9FXYMF7ZPUHR4PU4RH8P&contentType=json")
+
+if response.status_code == 200:
+    weather_data = response.json()
+    # Example data extraction, change according to actual JSON structure
+    st.write(f"Θερμοκρασία: {weather_data['days'][0]['temp']}°C")
+    st.write(f"Συνθήκες: {weather_data['days'][0]['conditions']}")
+else:
+    st.error("Δεν ήταν δυνατή η ανάκτηση των δεδομένων καιρού.")
 
 # Στατικό Widget 2 - Γενικές Πληροφορίες Χρηματοοικονομικής Αγοράς
 st.header("Γενικές Πληροφορίες Χρηματοοικονομικής Αγοράς")
@@ -24,10 +30,13 @@ st.write("Ανάκτηση ειδήσεων από ένα δημόσιο API..."
 st.header("Επιλογή Τοποθεσίας για Πληροφορίες Καιρού")
 location = st.text_input("Εισάγετε τοποθεσία:")
 if location:
-    response = requests.get(f"https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q={location}")
-    weather_data = response.json()
-    st.write(f"Θερμοκρασία: {weather_data['current']['temp_c']}°C")
-    st.write(f"Συνθήκες: {weather_data['current']['condition']['text']}")
+    response = requests.get(f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{location}?unitGroup=metric&key=H7U5R9FXYMF7ZPUHR4PU4RH8P&contentType=json")
+    if response.status_code == 200:
+        weather_data = response.json()
+        st.write(f"Θερμοκρασία: {weather_data['days'][0]['temp']}°C")
+        st.write(f"Συνθήκες: {weather_data['days'][0]['conditions']}")
+    else:
+        st.error("Δεν ήταν δυνατή η ανάκτηση των δεδομένων καιρού για την τοποθεσία.")
 
 # Διαδραστικό Widget 2 - Currency Conversion (Παράδειγμα)
 st.header("Μετατροπή Νομισμάτων")
@@ -46,3 +55,4 @@ num2 = st.number_input("Αριθμός 2:")
 if st.button("Υπολογισμός"):
     # Κλήση serverless function για μαθηματικό υπολογισμό
     st.write(f"Αποτέλεσμα: ...")
+weather.visualcrossing.com
