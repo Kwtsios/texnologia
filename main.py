@@ -17,39 +17,38 @@ else:
     st.error("Δεν ήταν δυνατή η ανάκτηση των δεδομένων καιρού.")
 
 # Στατικό Widget 2 - Γενικές Πληροφορίες Χρηματοοικονομικής Αγοράς
-import streamlit as st
 import requests
+import streamlit as st
 
 # Τίτλος ενότητας
-st.header("Γενικές Πληροφορίες Χρηματοοικονομικής Αγοράς")
+st.header("Γενικές Πληροφορίες Κρυπτονομισμάτων")
 
-# Επιλογή σύμβολου μετοχής
-symbol = "AAPL"  # Παράδειγμα σύμβολο (Apple Inc.)
-api_key = "DlrQGWnayMYAfcWVy0o74AGyYTPtQxPl"  # Αντικαταστήστε με το δικό σας API key
-stock_url = f"https://financialmodelingprep.com/api/v3/quote/{symbol}?apikey={api_key}"
+# Επιλογή σύμβολου κρυπτονομίσματος
+symbol = "bitcoin"  # Παράδειγμα κρυπτονόμισμα (Bitcoin)
+crypto_url = f"https://api.coincap.io/v2/assets/{symbol}"
 
 # Ανάκτηση δεδομένων για το επιλεγμένο σύμβολο
-stock_response = requests.get(stock_url)
+crypto_response = requests.get(crypto_url)
 
 # Έλεγχος αν η απόκριση ήταν επιτυχής
-if stock_response.status_code == 200:
-    stock_data = stock_response.json()
+if crypto_response.status_code == 200:
+    crypto_data = crypto_response.json()
     
     # Ελέγχει αν υπάρχουν δεδομένα
-    if stock_data:
-        latest_data = stock_data[0]  # Λήψη των δεδομένων του πρώτου αντικειμένου
+    if "data" in crypto_data and crypto_data["data"]:
+        latest_data = crypto_data["data"]
 
         # Εμφάνιση πληροφοριών
         st.write(f"Σύμβολο: {latest_data['symbol']}")
-        st.write(f"Τιμή: ${latest_data['price']:.2f}")
-        st.write(f"Υψηλό ημέρας: ${latest_data['dayHigh']:.2f}")
-        st.write(f"Χαμηλό ημέρας: ${latest_data['dayLow']:.2f}")
-        st.write(f"Τιμή κλεισίματος: ${latest_data['previousClose']:.2f}")
-        st.write(f"Όγκος: {latest_data['volume']}")
+        st.write(f"Όνομα: {latest_data['name']}")
+        st.write(f"Τιμή: ${float(latest_data['priceUsd']):.2f}")
+        st.write(f"Αλλαγή 24 ώρες: {float(latest_data['changePercent24Hr']):.2f}%")
+        st.write(f"Κεφαλαιοποίηση αγοράς: ${float(latest_data['marketCapUsd']):,.2f}")
+        st.write(f"Όγκος 24 ώρες: ${float(latest_data['volumeUsd24Hr']):,.2f}")
     else:
         st.error("Δεν βρέθηκαν δεδομένα για το σύμβολο που επιλέξατε.")
 else:
-    st.error("Δεν ήταν δυνατή η σύνδεση με το API του Financial Modeling Prep για δεδομένα χρηματιστηρίου.")
+    st.error("Δεν ήταν δυνατή η σύνδεση με το API του CoinCap για δεδομένα κρυπτονομισμάτων.")
     
 
 # Στατικό Widget 3 - Πληροφορίες για Σημερινή Ημερομηνία και Ώρα στην Κύπρο
