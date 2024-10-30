@@ -30,7 +30,7 @@ crypto_url = f"https://api.coincap.io/v2/assets/{symbol}"
 # Ανάκτηση δεδομένων για το επιλεγμένο σύμβολο
 crypto_response = requests.get(crypto_url)
 
-# Έλεγχος αν η απόκριση ήταν επιτυχής
+# Έλεγχος αν η απάντηση ήταν επιτυχής
 if crypto_response.status_code == 200:
     crypto_data = crypto_response.json()
     
