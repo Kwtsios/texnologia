@@ -1,6 +1,1 @@
-numpy
-pandas
-plotly.express
-streamlit
-yfinance
-nest_asyncio
+
