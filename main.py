@@ -73,7 +73,7 @@ response = requests.get(send)
 st.write(response.text)
 
 # Διαδραστικό Widget 2 - Μέτρηση γραμμάτων/λέξεων
-st.title("Μέτρηση γραμμάτων/λέξεων")
+st.header("Μέτρηση γραμμάτων/λέξεων")
 st.text("")
 st.text("")
 col5, col6 = st.columns(2)
