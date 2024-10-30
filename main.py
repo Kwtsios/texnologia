@@ -52,7 +52,7 @@ else:
     st.error("Δεν ήταν δυνατή η σύνδεση με το API του Financial Modeling Prep για δεδομένα χρηματιστηρίου.")
     
 
-# Στατικό Widget - Πληροφορίες για Σημερινή Ημερομηνία και Ώρα στην Κύπρο
+# Στατικό Widget 3 - Πληροφορίες για Σημερινή Ημερομηνία και Ώρα στην Κύπρο
 st.header("Πληροφορίες για Σημερινή Ημερομηνία και Ώρα στην Κύπρο")
 cyprus_timezone = pytz.timezone("Europe/Nicosia")
 current_datetime_cyprus = datetime.now(cyprus_timezone)
@@ -61,7 +61,7 @@ st.write("Τρέχουσα ώρα (Κύπρος):", current_datetime_cyprus.strf
 st.write("Ημέρα της εβδομάδας:", current_datetime_cyprus.strftime("%A"))
 
 # Διαδραστικό Widget 1 - Υπολογιστική μηχανή για Πρόσθεση
-st.title("Υπολογιστική μηχανή για Πρόσθεση")
+st.header("Υπολογιστική μηχανή για Πρόσθεση")
 col1, col2 = st.columns(2)
 with col1:
     number1 = st.number_input('Εισάγετε τον πρώτο αριθμό')
