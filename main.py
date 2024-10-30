@@ -87,7 +87,6 @@ st.write(response_second.text)
 # Διαδραστικό Widget 3 - Χρήση serverless για υπολογισμό
 st.header("Υπολογισμός πλήθους χαρακτήρων στο κείμενο")
 st.text("")
-st.text("")
 third_text = st.text_input('Εισάγετε κείμενο για υπολογισμό χαρακτήρων', 'This is a sentence')
 st.write('Αποτέλεσμα')
 send_third = f'https://6oswps446zy2qud64ngemd34bi0cgppp.lambda-url.ap-northeast-1.on.aws/?st={third_text}'
