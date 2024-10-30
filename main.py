@@ -74,7 +74,6 @@ st.write(response.text)
 # Διαδραστικό Widget 2 - Μέτρηση γραμμάτων/λέξεων
 st.header("Μέτρηση γραμμάτων/λέξεων")
 st.text("")
-st.text("")
 col5, col6 = st.columns(2)
 with col5:
     first_text = st.text_input('Εισάγετε το πρώτο κείμενο για έλεγχο', 'This is a sentence')
