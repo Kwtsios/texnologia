@@ -27,7 +27,7 @@ st.header("Γενικές Πληροφορίες Κρυπτονομισμάτω�
 symbol = "bitcoin"  # Παράδειγμα κρυπτονόμισμα (Bitcoin)
 crypto_url = f"https://api.coincap.io/v2/assets/{symbol}"
 
-# Ανάκτηση δεδομένων για το επιλεγμένο σύμβολο
+# Ανάκτηση δεδομένων για το συγκεκρημένο σύμβολο
 crypto_response = requests.get(crypto_url)
 
 # Έλεγχος αν η απάντηση ήταν επιτυχής
