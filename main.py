@@ -62,7 +62,7 @@ with col1:
     number1 = st.number_input('Εισάγετε τον πρώτο αριθμό')
 with col2:
     number2 = st.number_input('Εισάγετε τον δεύτερο αριθμό')
-st.write('Αποτέλεσμα από την serverless function (Πρόσθεση)')
+st.write('Αποτέλεσμα')
 send = f'https://vhkmdl2db7wsc3cggv3ozoj4ne0owrdk.lambda-url.ap-northeast-1.on.aws/?num1={number1}&num2={number2}&op=add'
 response = requests.get(send)
 st.write(response.text)
